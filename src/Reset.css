@@ -6,3 +6,8 @@
   list-style: none;
   border: 0;
 }
+body,
+html {
+  width: 100vw;
+  height: 100vh;
+}
