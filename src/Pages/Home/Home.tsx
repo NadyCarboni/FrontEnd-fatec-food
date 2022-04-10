@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Loading from "./Loading/Loading";
 import Main from "./Main/Main";
@@ -6,7 +6,11 @@ import Main from "./Main/Main";
 function Home() {
   const [loading, setLoading] = useState(true);
 
-  return <div>{loading && <Loading />}</div>;
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
+
+  return <div>{loading ? <Loading /> : <Main />}</div>;
 }
 
 export default Home;
