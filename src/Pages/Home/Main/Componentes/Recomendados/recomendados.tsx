@@ -10,6 +10,10 @@ export default function Recomendados() {
         <div className="produtos">
           <Produto />
           <Produto />
+          <Produto />
+          <Produto />
+          <Produto />
+          <Produto />
         </div>
       </div>
     </div>
