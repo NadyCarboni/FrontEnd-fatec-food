@@ -1,35 +1,73 @@
-import React from 'react'
 import { AiOutlineHome } from "@react-icons/all-files/ai/AiOutlineHome";
+import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
+import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
+import React, { useState } from "react";
+import "./NavBar.css";
 
-function NavBar () {
+function NavBar() {
+  const [activeKey, setActiveKey] = useState("home");
+
   return (
-    <>
-      <nav className='nav'>
-        <div className='nav__menu'>
-          <ul className='nav__list'>
-            <li>
-              <a href='#' className='nav__link'>
+    <nav className="nav">
+      <div className="nav__menu">
+        <ul className="nav__list">
+          <li>
+            <div
+              className={`nav__link-container ${
+                activeKey === "home" ? "active-link" : ""
+              }`}
+            >
+              <a
+                href="/"
+                className="nav__link"
+                onClick={() => {
+                  setActiveKey("home");
+                }}
+              >
                 <AiOutlineHome />
               </a>
-            </li>
+            </div>
+          </li>
 
-            <li>
-              <a href='#' className='nav__link'>
-                
+          <li>
+            <div
+              className={`nav__link-container ${
+                activeKey === "search" ? "active-link" : ""
+              }`}
+            >
+              <a
+                href="/"
+                className="nav__link"
+                onClick={() => {
+                  setActiveKey("search");
+                }}
+              >
+                <AiOutlineSearch />
               </a>
-            </li>
+            </div>
+          </li>
 
-            <li>
-              <a href='#' className='nav__link'>
-                
+          <li>
+            <div
+              className={`nav__link-container ${
+                activeKey === "cart" ? "active-link" : ""
+              }`}
+            >
+              <a
+                href="/"
+                className="nav__link"
+                onClick={() => {
+                  setActiveKey("cart");
+                }}
+              >
+                <AiOutlineShoppingCart />
               </a>
-            </li>
-
-          </ul>
-        </div>
-      </nav>
-    </>
-  )
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
 }
 
-export default NavBar
+export default NavBar;

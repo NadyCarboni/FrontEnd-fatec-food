@@ -1,0 +1,45 @@
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__menu {
+  width: 95%;
+  height: 5em;
+  position: fixed;
+  bottom: .2rem;
+  background-color: #353535;
+  border-radius: 4rem;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.nav__list {
+  width: 100%;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav__link-container{
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.nav__link {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.active-link {
+  background-color: #FF3364;
+  transition: .2s all ease-in-out;
+}
