@@ -1,0 +1,15 @@
+.navbar {
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+
+  width: 90%;
+  border-radius: 30px;
+
+  background-color: var(--gray-200);
+}
+
+.active {
+  border-radius: 100px;
+  background-color: var(--red-100);
+}
