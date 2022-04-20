@@ -6,6 +6,8 @@
 .product {
   background-color: #282828;
   color: white;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
 .product__img-container {
@@ -64,6 +66,28 @@
   display: inline-block;
   font-size: 1.3em;
 }
+
+.product__quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product__quantity-number {
+  display: block;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.product__quantity-plus {
+  padding: .4em .7em;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: #FF3364;
+  color: white;
+  
+}
+
 
 .product__description-container {
   padding: 30px 2em;
