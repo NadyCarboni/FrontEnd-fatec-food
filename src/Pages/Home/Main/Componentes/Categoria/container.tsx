@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHamburger } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 
 export default function Container() {
   const categorias = [
@@ -23,7 +23,7 @@ export default function Container() {
             key={categoria.id}
           >
             <div className="icon flex align-itens-center justify-content-center mb-1">
-              <FaHamburger size="2rem" />
+              <AiOutlineShoppingCart size="2rem" />
             </div>
             <div className="nome ">{categoria.nome}</div>
           </div>

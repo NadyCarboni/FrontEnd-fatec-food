@@ -1,5 +1,5 @@
 import React from "react";
-import { FaConciergeBell } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 
 export default function Header() {
   console.log("123");
@@ -13,7 +13,7 @@ export default function Header() {
               Deliciosos pratos para você escolher
             </p>
           </div>
-          <FaConciergeBell size="2em" />
+          <AiOutlineShoppingCart size="2em" />
         </div>
         <input type="text" />
       </div>
