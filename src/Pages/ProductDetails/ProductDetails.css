@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.white-space {
+  height: 80px;
+}
+
 .product {
   background-color: #282828;
   color: white;

@@ -71,6 +71,7 @@ function ProductDetails() {
           </div>
         </div>
       </div>
+      <div className="white-space" />
     </div>
   );
 }

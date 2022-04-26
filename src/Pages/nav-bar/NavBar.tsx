@@ -2,6 +2,7 @@ import { AiOutlineHome } from "@react-icons/all-files/ai/AiOutlineHome";
 import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 function NavBar() {
@@ -17,15 +18,15 @@ function NavBar() {
                 activeKey === "home" ? "active-link" : ""
               }`}
             >
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="nav__link"
                 onClick={() => {
                   setActiveKey("home");
                 }}
               >
                 <AiOutlineHome />
-              </a>
+              </Link>
             </div>
           </li>
 
@@ -35,15 +36,15 @@ function NavBar() {
                 activeKey === "search" ? "active-link" : ""
               }`}
             >
-              <a
-                href="/"
+              <Link
+                to="/product"
                 className="nav__link"
                 onClick={() => {
                   setActiveKey("search");
                 }}
               >
                 <AiOutlineSearch />
-              </a>
+              </Link>
             </div>
           </li>
 
@@ -53,15 +54,15 @@ function NavBar() {
                 activeKey === "cart" ? "active-link" : ""
               }`}
             >
-              <a
-                href="/"
+              <Link
+                to="/cart"
                 className="nav__link"
                 onClick={() => {
                   setActiveKey("cart");
                 }}
               >
                 <AiOutlineShoppingCart />
-              </a>
+              </Link>
             </div>
           </li>
         </ul>
