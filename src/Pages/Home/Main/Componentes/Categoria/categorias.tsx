@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { FaHamburger } from "react-icons/fa";
 
 import Container from "./container";
 

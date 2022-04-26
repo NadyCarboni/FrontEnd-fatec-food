@@ -1,0 +1,94 @@
+html {
+  background-color: #282828;
+  color: white;
+}
+
+.white-space {
+  height: 100px;
+}
+
+.cart{
+  min-height: 100vh;
+  padding: 0 2em;
+}
+
+.cart-container {
+  width: 100%;
+}
+
+.cart__title {
+  color: white;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 2em;
+}
+
+.cart__item-card-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart__img-container {
+  width: 100px;
+}
+
+.cart__img {
+  height: 94px;
+  width: 100%;
+  background-color: #282828;
+  border-radius: 15px;
+  overflow: hidden;
+  background-image: url('https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.cart__item-card-container {
+  background-color: #3E3E3E;
+  border-radius: 1.5em;
+  padding: 20px;
+  min-height: 100px;
+}
+
+.cart__info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-left: 20px;
+}
+
+.cart__info-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.cart__info-description {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.cart__info-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__info-price {
+  font-weight: bold;
+  display: block;
+}
+
+.cart__info-quantity {
+  font-weight: bold;
+  display: flex;
+  background-color: #FF3364;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
