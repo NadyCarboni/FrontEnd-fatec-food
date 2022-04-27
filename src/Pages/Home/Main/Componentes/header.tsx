@@ -1,5 +1,5 @@
-import React from "react";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
+import React from "react";
 
 export default function Header() {
   console.log("123");

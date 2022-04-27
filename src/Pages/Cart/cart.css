@@ -1,5 +1,5 @@
 html {
-  background-color: #282828;
+  background-color: var(--gray-300);
   color: white;
 }
 
@@ -28,6 +28,7 @@ html {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.37);
 }
 
 .cart__img-container {

@@ -1,16 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Produto() {
+interface IProducts {
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+  id: string;
+}
+
+export default function Produto({
+  name,
+  price,
+  description,
+  image,
+  id,
+}: IProducts) {
   return (
-    <div className="container-produto flex column pb-1">
-      <img
-        src="https://images.unsplash.com/photo-1649000475401-6bc57e7ecf48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDM1fHhqUFI0aGxrQkdBfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-        alt=""
-      />
-      <div className="legenda">
-        <h4 className="font-weight-500">Nome</h4>
-        <p className="font-weight-200">R$ 00,00</p>
+    <Link to={`/product/${id}`}>
+      <div className="container-produto flex column pb-1">
+        <img src={image} alt="" />
+        <div className="legenda">
+          <h4 className="font-weight-500">{name}</h4>
+          <p className="font-weight-200">R$ {price}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

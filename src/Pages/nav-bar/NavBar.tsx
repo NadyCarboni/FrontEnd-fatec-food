@@ -33,24 +33,6 @@ function NavBar() {
           <li>
             <div
               className={`nav__link-container ${
-                activeKey === "search" ? "active-link" : ""
-              }`}
-            >
-              <Link
-                to="/product"
-                className="nav__link"
-                onClick={() => {
-                  setActiveKey("search");
-                }}
-              >
-                <AiOutlineSearch />
-              </Link>
-            </div>
-          </li>
-
-          <li>
-            <div
-              className={`nav__link-container ${
                 activeKey === "cart" ? "active-link" : ""
               }`}
             >

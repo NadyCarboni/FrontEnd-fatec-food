@@ -28,6 +28,14 @@ input {
   border-radius: 7px;
 }
 
+a {
+  text-decoration: none;
+}
+
+.white-space {
+  height: 70px;
+}
+
 /* Categoria */
 
 .horizontal-scroll {
@@ -45,6 +53,7 @@ input {
   width: 4rem;
   border-radius: 10px;
   background-color: var(--gray-200);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.294);
 }
 .categoria-container .nome {
   font-size: 0.8rem;
@@ -73,6 +82,7 @@ input {
   border-radius: 30px;
   display: flex;
   margin: 0.5rem;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.294);
 }
 
 .produtos img {
