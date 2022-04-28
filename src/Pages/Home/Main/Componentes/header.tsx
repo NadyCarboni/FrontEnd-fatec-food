@@ -1,5 +1,6 @@
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   console.log("123");
@@ -13,7 +14,9 @@ export default function Header() {
               Deliciosos pratos para você escolher
             </p>
           </div>
-          <AiOutlineShoppingCart size="2em" />
+          <Link to="/cart">
+            <AiOutlineShoppingCart size="2em" />
+          </Link>
         </div>
         <input type="text" />
       </div>

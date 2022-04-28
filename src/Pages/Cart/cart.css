@@ -7,6 +7,14 @@ html {
   height: 100px;
 }
 
+.return-button {
+  position: fixed;
+  left: 2em;
+  top: 2em;
+  font-size: 16px;
+  font-weight: normal;
+}
+
 .cart{
   min-height: 100vh;
   padding: 0 2em;
@@ -18,9 +26,9 @@ html {
 
 .cart__title {
   color: white;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  font-size: 2em;
+  margin-top: 3em;
+  margin-bottom: 1.5em;
+  font-size: 1.5em;
 }
 
 .cart__item-card-container {
@@ -92,4 +100,39 @@ html {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+}
+
+.cart__request-container {
+  background-color: #FF3364;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.cart__request-info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.cart__request-info-p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cart__request-button {
+  background-color: white;
+  border-radius: 20px;
+  color: #FF3364;
+  padding: .5em 1em;
+  font-size: 20px;
+  font-weight: bold;
+  width: 80%;
 }

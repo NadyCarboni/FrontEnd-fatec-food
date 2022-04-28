@@ -1,6 +1,7 @@
+import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import NavBar from "../nav-bar/NavBar";
 import "./cart.css";
 
 function Cart() {
@@ -55,46 +56,62 @@ function Cart() {
   const [activeKey, setActiveKey] = useState("cart");
 
   return (
-    <div className="cart">
-      <div className="cart-container">
-        <h2 className="cart__title">Seu Carrinho</h2>
-        {Array.isArray(requestList) &&
-          requestList.map((item) => {
-            if (!item.id) return null;
+    <>
+      <div className="cart">
+        <div className="cart-container">
+          <h2 className="cart__title">Seu Carrinho</h2>
+          {Array.isArray(requestList) &&
+            requestList.map((item) => {
+              if (!item.id) return null;
 
-            return (
-              <div className="cart__item-card-container">
-                <div className="cart__img-container">
-                  <div
-                    className="cart__img"
-                    style={{
-                      backgroundImage: `url('${
-                        item.image
-                          ? item.image
-                          : "https://corevisionbucket.s3.sa-east-1.amazonaws.com/NewsNegcios/unauth/bgpadropng13-12-2021-112927-m61644d0bceb66318d818b1dc-u61644d0bceb66318d818b1dc-authproducts6197f92b00c03058f0da46ec.png"
-                      }')`,
-                    }}
-                  />
-                </div>
-                <div className="cart__info-container">
-                  <div className="cart__info-superior">
-                    <p className="cart__info-name">{item.name}</p>
-                    <p className="cart__info-description">{item.description}</p>
+              return (
+                <div className="cart__item-card-container">
+                  <div className="return-button">
+                    <Link to="/">
+                      <LeftOutlined className="return-button-icon" />
+                    </Link>
                   </div>
-                  <div className="cart__info-bottom">
-                    <p className="cart__info-price">R$ {item.price}</p>
-                    <p className="cart__info-quantity">{item.quantity}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
 
-        <div className="cart__request-container" />
+                  <div className="cart__img-container">
+                    <div
+                      className="cart__img"
+                      style={{
+                        backgroundImage: `url('${
+                          item.image
+                            ? item.image
+                            : "https://corevisionbucket.s3.sa-east-1.amazonaws.com/NewsNegcios/unauth/bgpadropng13-12-2021-112927-m61644d0bceb66318d818b1dc-u61644d0bceb66318d818b1dc-authproducts6197f92b00c03058f0da46ec.png"
+                        }')`,
+                      }}
+                    />
+                  </div>
+                  <div className="cart__info-container">
+                    <div className="cart__info-superior">
+                      <p className="cart__info-name">{item.name}</p>
+                      <p className="cart__info-description">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="cart__info-bottom">
+                      <p className="cart__info-price">R$ {item.price}</p>
+                      <p className="cart__info-quantity">{item.quantity}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       </div>
-      <div className="white-space" />
-      <NavBar activeKey={activeKey} />
-    </div>
+      <div className="cart__request-container">
+        <div className="cart__request-info">
+          <p className="cart__request-info-p">Total</p>
+          <p className="cart__request-info-p">R$ 100.00</p>
+        </div>
+
+        <button type="button" className="cart__request-button">
+          Pedir
+        </button>
+      </div>
+    </>
   );
 }
 
