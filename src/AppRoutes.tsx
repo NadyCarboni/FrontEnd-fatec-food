@@ -15,7 +15,7 @@ export default function AppRoutes() {
         <Route path="/cart" element={<Cart />} />
       </Routes>
 
-      <NavBar />
+      {/* <NavBar /> */}
     </Router>
   );
 }

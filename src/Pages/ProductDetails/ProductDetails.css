@@ -7,11 +7,22 @@
   height: 80px;
 }
 
+.return-button {
+  position: fixed;
+  left: 2em;
+  top: 2em;
+}
+
+.return-button-icon {
+  font-size: 1.3em;
+}
+
 .product {
   background-color: #282828;
   color: white;
   box-sizing: border-box;
   min-height: 100vh;
+  position: relative;
 }
 
 .product__img-container {

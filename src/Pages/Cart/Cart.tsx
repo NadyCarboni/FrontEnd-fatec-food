@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import NavBar from "../nav-bar/NavBar";
 import "./cart.css";
 
 function Cart() {
@@ -50,6 +52,8 @@ function Cart() {
     },
   ]);
 
+  const [activeKey, setActiveKey] = useState("cart");
+
   return (
     <div className="cart">
       <div className="cart-container">
@@ -85,8 +89,11 @@ function Cart() {
               </div>
             );
           })}
+
+        <div className="cart__request-container" />
       </div>
       <div className="white-space" />
+      <NavBar activeKey={activeKey} />
     </div>
   );
 }

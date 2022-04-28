@@ -1,12 +1,20 @@
 import { AiOutlineHome } from "@react-icons/all-files/ai/AiOutlineHome";
 import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
-function NavBar() {
-  const [activeKey, setActiveKey] = useState("home");
+interface INavBar {
+  activeKey: string;
+}
+
+function NavBar({ activeKey }: INavBar) {
+  const [activeKeyNav, setActiveKeyNav] = useState("");
+
+  useEffect(() => {
+    setActiveKeyNav(activeKey);
+  });
 
   return (
     <nav className="nav">
@@ -15,14 +23,14 @@ function NavBar() {
           <li>
             <div
               className={`nav__link-container ${
-                activeKey === "home" ? "active-link" : ""
+                activeKeyNav === "home" ? "active-link" : ""
               }`}
             >
               <Link
                 to="/"
                 className="nav__link"
                 onClick={() => {
-                  setActiveKey("home");
+                  setActiveKeyNav("home");
                 }}
               >
                 <AiOutlineHome />
@@ -33,14 +41,14 @@ function NavBar() {
           <li>
             <div
               className={`nav__link-container ${
-                activeKey === "cart" ? "active-link" : ""
+                activeKeyNav === "cart" ? "active-link" : ""
               }`}
             >
               <Link
                 to="/cart"
                 className="nav__link"
                 onClick={() => {
-                  setActiveKey("cart");
+                  setActiveKeyNav("cart");
                 }}
               >
                 <AiOutlineShoppingCart />

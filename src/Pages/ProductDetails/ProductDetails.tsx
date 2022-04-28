@@ -1,4 +1,6 @@
+import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ProductDetails.css";
 
 function ProductDetails() {
@@ -18,6 +20,11 @@ function ProductDetails() {
 
   return (
     <div className="product">
+      <div className="return-button">
+        <Link to="/">
+          <LeftOutlined className="return-button-icon" />
+        </Link>
+      </div>
       <div className="product__img-container">
         <div className="product-img" />
       </div>
@@ -71,7 +78,6 @@ function ProductDetails() {
           </div>
         </div>
       </div>
-      <div className="white-space" />
     </div>
   );
 }
