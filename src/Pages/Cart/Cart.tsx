@@ -53,8 +53,6 @@ function Cart() {
     },
   ]);
 
-  const [activeKey, setActiveKey] = useState("cart");
-
   return (
     <>
       <div className="cart">
