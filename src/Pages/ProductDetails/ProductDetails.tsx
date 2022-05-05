@@ -1,5 +1,5 @@
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
-import { Input, Checkbox } from "antd";
+import { Checkbox, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductDetails.css";
