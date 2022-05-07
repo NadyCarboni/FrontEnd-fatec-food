@@ -10,22 +10,31 @@ export default function Main() {
   const [activeKey, setActiveKey] = useState("home");
   const [products, setProducts] = useState<any>();
   const [errorProduct, setErrorProduct] = useState<any>();
-
-  const getProducts = async () => {
-    try {
-      const response = await api.get("/Produto");
-      console.log(response.data.data);
-      if (response) setProducts(response.data.data);
-    } catch (err) {
-      setErrorProduct(err);
-    }
-  };
+  const [comandaId, setComandaId] = useState<number>();
 
   useEffect(() => {
+    const getComandaId = async () => {
+      try {
+        const response = await api.get("/Comanda");
+        console.log(response.data.data);
+        if (response) setComandaId(response.data.data);
+      } catch (err) {
+        setErrorProduct(err);
+      }
+    };
+
+    const getProducts = async () => {
+      try {
+        const response = await api.get("/Produto");
+        if (response) setProducts(response.data.data);
+      } catch (err) {
+        setErrorProduct(err);
+      }
+    };
+
+    getComandaId();
     getProducts();
   }, []);
-
-  console.log("products: ", products);
 
   return (
     <div id="main">

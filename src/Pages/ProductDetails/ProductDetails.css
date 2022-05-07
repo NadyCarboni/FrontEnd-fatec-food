@@ -15,6 +15,7 @@
 
 .return-button-icon {
   font-size: 1.3em;
+  mix-blend-mode: difference;
 }
 
 .section-tittle {
@@ -40,6 +41,7 @@
 }
 
 .product-img {
+  background-color: rgba(0, 0, 0, 0.767);
   background-image: url('https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg');
   background-repeat: no-repeat;
   background-position: center;
@@ -222,4 +224,35 @@
 
 .padding {
   padding: 0 2em;
+}
+
+.product-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.product-error-container {
+  height: 40vh;
+  width: 70%;
+  display:flex ;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #FF3364;
+  border-radius: 80px;
+  padding: 1em 2em;
+  text-align: center;
+}
+
+.product-error-icon {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+.product-error-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

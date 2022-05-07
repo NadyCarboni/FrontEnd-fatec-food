@@ -10,7 +10,11 @@ function Home() {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
-  return <div>{loading ? <Loading /> : <Main />}</div>;
+  return (
+    <div>
+      <Main />
+    </div>
+  );
 }
 
 export default Home;
