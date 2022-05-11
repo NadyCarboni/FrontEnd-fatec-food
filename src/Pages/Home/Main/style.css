@@ -106,3 +106,35 @@ a {
 .produtos .legenda p {
   font-size: 0.7rem;
 }
+
+/* Error  */
+
+.produtos-error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.produtos-error-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  border-radius: 20px;
+  flex-direction: column;
+  background-color: var(--red-100);
+  margin-top: 70px;
+  text-align: center;
+
+  padding: 1rem ;
+}
+
+.produtos-error-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.produtos-error-title {
+  font-size: 1.2em;
+}

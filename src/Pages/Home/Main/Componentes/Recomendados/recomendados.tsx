@@ -1,3 +1,4 @@
+import { ExclamationCircleFilled } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 
 import Produto from "./produto";
@@ -19,25 +20,34 @@ function Recomendados({ productList }: { productList: IProducts[] }) {
     if (productList) setProducts(productList);
   }, [productList]);
 
-  console.log("products", products);
-
   return (
     <div>
       <div className="m-4 mt-0">
-        <h4 className="title-name">Recomendados</h4>
-        <div className="produtos">
-          {Array.isArray(products) &&
-            products.map((item) => {
-              return (
-                <Produto
-                  name={item.nome}
-                  image={item.foto}
-                  price={item.preco}
-                  id={item.id}
-                />
-              );
-            })}
-        </div>
+        <h4 className="title-name">Produtos</h4>
+        {products.length <= 0 ? (
+          <div className="produtos-error-container">
+            <div className="produtos-error-content">
+              <ExclamationCircleFilled className="produtos-error-icon" />
+              <p className="produtos-error-title">
+                Nenhum produto encontrado !
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="produtos">
+            {Array.isArray(products) &&
+              products.map((item) => {
+                return (
+                  <Produto
+                    name={item.nome}
+                    image={item.foto}
+                    price={item.preco}
+                    id={item.id}
+                  />
+                );
+              })}
+          </div>
+        )}
       </div>
     </div>
   );

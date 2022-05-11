@@ -53,6 +53,10 @@ function Cart() {
     },
   ]);
 
+  const precos = requestList.map((p) => p.price);
+  const somar = (acumulado: number, x: number) => acumulado + x;
+  const total = precos.reduce(somar).toFixed(2);
+
   return (
     <>
       <div className="cart">
@@ -61,7 +65,6 @@ function Cart() {
           {Array.isArray(requestList) &&
             requestList.map((item) => {
               if (!item.id) return null;
-
               return (
                 <div className="cart__item-card-container">
                   <div className="return-button">
@@ -99,15 +102,13 @@ function Cart() {
             })}
         </div>
       </div>
+
+      <div className="white-space" />
       <div className="cart__request-container">
         <div className="cart__request-info">
           <p className="cart__request-info-p">Total</p>
-          <p className="cart__request-info-p">R$ 100.00</p>
+          <p className="cart__request-info-p">{`R$ ${total}`}</p>
         </div>
-
-        <button type="button" className="cart__request-button">
-          Pedir
-        </button>
       </div>
     </>
   );

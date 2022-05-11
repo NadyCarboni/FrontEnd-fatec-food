@@ -4,7 +4,7 @@ html {
 }
 
 .white-space {
-  height: 100px;
+  height: 200px;
 }
 
 .return-button {
@@ -105,13 +105,16 @@ html {
 .cart__request-container {
   background-color: #FF3364;
   width: 100%;
-  height: 150px;
+  height: 80px;
   display: flex;
   justify-self: center;
   align-items: center;
   flex-direction: column;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+
+  position: fixed;
+  bottom: 0px;
 }
 
 .cart__request-info {

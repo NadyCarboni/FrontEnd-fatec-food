@@ -1,11 +1,18 @@
+import Search from "antd/lib/input/Search";
 import React from "react";
 
 export default function input() {
+  const onSearch = (value: string) => console.log(value);
+
   return (
     <div>
-      {" "}
-      <input type="search" placeholder="Search..." />{" "}
-      <button type="submit">Search</button>
+      <Search
+        addonBefore="https://"
+        placeholder="input search text"
+        allowClear
+        onSearch={onSearch}
+        style={{ width: 304 }}
+      />
     </div>
   );
 }
