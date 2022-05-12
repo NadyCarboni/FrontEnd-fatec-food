@@ -19,7 +19,7 @@ interface IProduct {
   nome: string;
   preco: number;
   descricao?: string;
-  serve?: number;
+  porcao?: number;
 }
 
 function ProductDetails() {
@@ -131,8 +131,10 @@ function ProductDetails() {
         <div className="product__content-container">
           <div className="product__content-header">
             <h2 className="product__title">{product?.nome}</h2>
-            {product?.serve && (
-              <p className="product__serve">{`serve ${product.serve} pessoa`}</p>
+            {product?.porcao && (
+              <p className="product__serve">{`serve ${product.porcao} ${
+                product.porcao > 1 ? "pessoas" : "pessoa"
+              }`}</p>
             )}
 
             <div className="product__price-quantity-container">

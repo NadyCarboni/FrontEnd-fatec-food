@@ -11,6 +11,7 @@
   position: fixed;
   left: 2em;
   top: 2em;
+  mix-blend-mode: difference;
 }
 
 .return-button-icon {
@@ -41,7 +42,6 @@
 }
 
 .product-img {
-  background-color: rgba(0, 0, 0, 0.767);
   background-image: url('https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg');
   background-repeat: no-repeat;
   background-position: center;
