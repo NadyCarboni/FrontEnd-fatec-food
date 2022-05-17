@@ -30,6 +30,8 @@ function ProductDetails() {
   const [productError, setProductError] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [postError, setPostError] = useState<any>();
+  const { comandId } = useParams<{ comandId?: string }>();
+  const [observation, setObservation] = useState("");
 
   const [additionalList, setAdditionalList] = useState<any[]>([
     {
@@ -79,13 +81,16 @@ function ProductDetails() {
 
   const postPedido = async () => {
     const state = {
-      id: productId,
-      data: "2022-05-07T01:15:06.305Z",
-      comandaId: 0,
+      id: Number(comandId),
+      productId: Number(productId),
+      observacoes: observation,
+      pedidoId: 1,
+      quantidade: quantity,
     };
 
     try {
       const response = await api.post(`/Pedido`, { ...state });
+      console.log("response", response);
       setLoading(false);
     } catch (err) {
       setPostError(err);
@@ -138,7 +143,9 @@ function ProductDetails() {
             )}
 
             <div className="product__price-quantity-container">
-              <p className="product__price">{`R$ ${product?.preco}`}</p>
+              <p className="product__price">{`R$ ${product?.preco.toFixed(
+                2
+              )}`}</p>
               <div className="product__quantity">
                 <div className="product__quantity-container">
                   <button
@@ -208,11 +215,16 @@ function ProductDetails() {
               placeholder="Digite sua observação..."
               autoSize={{ minRows: 3, maxRows: 5 }}
               maxLength={100}
+              onChange={(e) => {
+                setObservation(e.target.value);
+              }}
             />
           </div>
 
           <div className="product__final-section">
-            <p className="product__final-price">{`R$ ${totalPrice}`}</p>
+            <p className="product__final-price">{`R$ ${totalPrice.toFixed(
+              2
+            )}`}</p>
             <button
               className="product__add"
               type="button"
@@ -220,7 +232,7 @@ function ProductDetails() {
                 postPedido();
               }}
             >
-              Adcionar
+              Adicionar
             </button>
           </div>
         </div>

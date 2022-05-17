@@ -9,8 +9,12 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
+        <Route path="/:comandId" element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/product/:productId" element={<ProductDetails />} />
+        <Route
+          path="/product/:productId/:comandId"
+          element={<ProductDetails />}
+        />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
