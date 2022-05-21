@@ -15,9 +15,15 @@ export default function Header() {
               Deliciosos pratos para você escolher
             </p>
           </div>
-          <Link to="/cart">
-            <AiOutlineShoppingCart size="2em" />
-          </Link>
+          {!localStorage.getItem("itens") ? (
+            <Link to="/emptycart">
+              <AiOutlineShoppingCart size="2em" />
+            </Link>
+          ) : (
+            <Link to="/cart">
+              <AiOutlineShoppingCart size="2em" />
+            </Link>
+          )}
         </div>
         <div className="inputSearchContainer">
           <input

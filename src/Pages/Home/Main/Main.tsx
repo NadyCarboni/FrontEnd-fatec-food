@@ -13,6 +13,12 @@ export default function Main() {
   const [comandaId, setComandaId] = useState<number>();
 
   useEffect(() => {
+    // console.log(localStorage.removeItem("itens"));
+    // if (!localStorage.getItem("itens")) {
+    //   const cartArray: any[] = [];
+    //   localStorage.setItem("itens", JSON.stringify(cartArray));
+    //   console.log(localStorage.getItem("itens"));
+    // }
     const getComandaId = async () => {
       try {
         const response = await api.get("/Comanda");

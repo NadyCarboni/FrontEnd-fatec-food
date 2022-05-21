@@ -15,7 +15,7 @@ html {
   font-weight: normal;
 }
 
-.cart{
+.cart {
   min-height: 100vh;
   padding: 0 2em;
 }
@@ -33,6 +33,7 @@ html {
 
 .cart__item-card-container {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -49,14 +50,14 @@ html {
   background-color: #282828;
   border-radius: 15px;
   overflow: hidden;
-  background-image: url('https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg');
+  background-image: url("https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
 .cart__item-card-container {
-  background-color: #3E3E3E;
+  background-color: #3e3e3e;
   border-radius: 1.5em;
   padding: 20px;
   min-height: 100px;
@@ -94,7 +95,7 @@ html {
 .cart__info-quantity {
   font-weight: bold;
   display: flex;
-  background-color: #FF3364;
+  background-color: #ff3364;
   width: 25px;
   height: 25px;
   justify-content: center;
@@ -103,7 +104,7 @@ html {
 }
 
 .cart__request-container {
-  background-color: #FF3364;
+  background-color: #ff3364;
   width: 100%;
   height: 80px;
   display: flex;
@@ -133,9 +134,66 @@ html {
 .cart__request-button {
   background-color: white;
   border-radius: 20px;
-  color: #FF3364;
-  padding: .5em 1em;
+  color: #ff3364;
+  padding: 0.5em 1em;
   font-size: 20px;
   font-weight: bold;
   width: 80%;
+}
+
+.cart-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.cart-error-container {
+  height: 40vh;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ff3364;
+  border-radius: 80px;
+  padding: 1em 2em;
+  text-align: center;
+}
+
+.cart-error-icon {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+.cart-error-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cart__delete {
+  position: absolute;
+  left: 90%;
+  top: 5%;
+}
+.cart__delete button {
+  font-size: 1.5rem;
+  background-color: transparent;
+}
+.cart__order_button {
+  background-color: #ff3364;
+  color: white;
+  border-color: transparent;
+  width: 100%;
+  padding: 0.8em 3em;
+  border-radius: 20px 20px 20px 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.cart__order__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

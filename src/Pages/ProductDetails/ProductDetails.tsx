@@ -30,7 +30,8 @@ function ProductDetails() {
   const [productError, setProductError] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [postError, setPostError] = useState<any>();
-  const { comandId } = useParams<{ comandId?: string }>();
+  // const { comandId } = useParams<{ comandId?: string }>();
+  const comandId = "2";
   const [observation, setObservation] = useState("");
 
   const [additionalList, setAdditionalList] = useState<any[]>([
@@ -79,18 +80,31 @@ function ProductDetails() {
     getProductsDetails();
   }, [productId]);
 
-  const postPedido = async () => {
-    const state = {
-      id: Number(comandId),
-      productId: Number(productId),
-      observacoes: observation,
-      pedidoId: 1,
-      quantidade: quantity,
-    };
-
+  const addToCart = async () => {
     try {
-      const response = await api.post(`/Pedido`, { ...state });
-      console.log("response", response);
+      const response = await api.get(`/Produto/Individual?id=${productId}`);
+      const produto = response.data.data[0];
+      const state = {
+        id: Number(comandId),
+        produtoId: Number(productId),
+        observacoes: observation,
+        pedidoId: 1,
+        produto,
+        quantidade: quantity,
+      };
+
+      if (!localStorage.getItem("itens")) {
+        localStorage.setItem("itens", JSON.stringify([])); // Iniciar carrinho
+        const cartArray = JSON.parse(localStorage.getItem("itens")!);
+        cartArray?.push({ ...state });
+        localStorage.setItem("itens", JSON.stringify(cartArray));
+      } else {
+        const cartArray = JSON.parse(localStorage.getItem("itens")!);
+        cartArray?.push({ ...state });
+        localStorage.setItem("itens", JSON.stringify(cartArray));
+        console.log(localStorage.getItem("itens"));
+      }
+
       setLoading(false);
     } catch (err) {
       setPostError(err);
@@ -229,7 +243,7 @@ function ProductDetails() {
               className="product__add"
               type="button"
               onClick={() => {
-                postPedido();
+                addToCart();
               }}
             >
               Adicionar

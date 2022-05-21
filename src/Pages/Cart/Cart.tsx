@@ -1,62 +1,66 @@
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { FaTimesCircle } from "@react-icons/all-files/fa/FaTimesCircle";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import api from "../../service/api";
 
 import "./cart.css";
 
 function Cart() {
-  const [requestList, setRequestList] = useState<any[]>([
-    {
-      id: "1",
-      name: "panquecas de toucinho",
-      description: "Panqueca feita de toucinho muito boa",
-      price: 10.99,
-      quantity: 1,
-      image:
-        "https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg",
-    },
-    {
-      id: "2",
-      name: "panquecas de toucinho 2",
-      description: "Panqueca feita de toucinho muito boa 2",
-      price: 20.99,
-      quantity: 2,
-      image:
-        "https://cdn.discordapp.com/attachments/691792050831622174/966798477654896692/eiliv-sonas-aceron-ZuIDLSz3XLg-unsplash.jpg",
-    },
-    {
-      id: "3",
-      name: "panquecas de toucinho 3",
-      description: "Panqueca feita de toucinho muito boa 3",
-      price: 30.99,
-      quantity: 3,
-      image:
-        "https://cdn.discordapp.com/attachments/691792050831622174/966798701932711946/joseph-gonzalez-fdlZBWIP0aM-unsplash.jpg",
-    },
-    {
-      id: "4",
-      name: "panquecas de toucinho 4",
-      description: "Panqueca feita de toucinho muito boa 5",
-      price: 40.99,
-      quantity: 3,
-      image:
-        "https://cdn.discordapp.com/attachments/691792050831622174/966798962168332289/joseph-gonzalez-zcUgjyqEwe8-unsplash.jpg",
-    },
-    {
-      id: "5",
-      name: "panquecas de toucinho 5",
-      description: "Panqueca feita de toucinho muito boa 4",
-      price: 50.99,
-      quantity: 3,
-      image:
-        "https://cdn.discordapp.com/attachments/691792050831622174/966799270655184926/herson-rodriguez-odouHPr0Lqw-unsplash.jpg",
-    },
-  ]);
+  const [requestList, setRequestList] = useState<any[]>(
+    JSON.parse(localStorage.getItem("itens")!)
+  );
 
-  const precos = requestList.map((p) => p.price);
+  const precos = requestList.map((p) => p.produto.preco * p.quantidade);
   const somar = (acumulado: number, x: number) => acumulado + x;
   const total = precos.reduce(somar).toFixed(2);
 
+  const navigate = useNavigate();
+
+  function arrayRemove(arr: any, value: any) {
+    return arr.filter(function (ele: any) {
+      return ele !== value;
+    });
+  }
+  const removeItem = (item: any) => {
+    // requestList.forEach((element, index) => {
+    //   if (item === element) {
+    //     let aux: any = JSON.parse(localStorage.getItem("itens")!);
+    //     aux = aux.splice(index, 0);
+    //     localStorage.setItem("itens", JSON.stringify(aux));
+    //     if (aux.length === 0) {
+    //       localStorage.removeItem("itens");
+    //       navigate("/emptyCart");
+    //     } else {
+    //       console.log(JSON.parse(localStorage.getItem("itens")!));
+    //     }
+    //     // localStorage.setItem("itens", JSON.stringify(requestList));
+    //     // if (requestList.length === 0) {
+    //     //   localStorage.removeItem("itens");
+    //     //   navigate("/emptyCart");
+    //     // } else {
+    //     //   console.log(requestList);
+    //     // }
+    //   }
+    // });
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < requestList.length; i++) {
+      if (item === requestList[i]) {
+        const aux: any = JSON.parse(localStorage.getItem("itens")!);
+        console.log("aux atual: ", aux);
+        aux.splice(i, 1);
+        localStorage.setItem("itens", JSON.stringify(aux));
+        if (aux.length === 0) {
+          localStorage.removeItem("itens");
+          navigate("/emptyCart");
+        } else {
+          setRequestList(aux);
+        }
+      }
+    }
+  };
   return (
     <>
       <div className="cart">
@@ -64,6 +68,8 @@ function Cart() {
           <h2 className="cart__title">Seu Carrinho</h2>
           {Array.isArray(requestList) &&
             requestList.map((item) => {
+              console.log(item);
+
               if (!item.id) return null;
               return (
                 <div className="cart__item-card-container">
@@ -78,8 +84,8 @@ function Cart() {
                       className="cart__img"
                       style={{
                         backgroundImage: `url('${
-                          item.image
-                            ? item.image
+                          item.produto.foto
+                            ? `http://54.175.22.87${item.produto.foto}`
                             : "https://corevisionbucket.s3.sa-east-1.amazonaws.com/NewsNegcios/unauth/bgpadropng13-12-2021-112927-m61644d0bceb66318d818b1dc-u61644d0bceb66318d818b1dc-authproducts6197f92b00c03058f0da46ec.png"
                         }')`,
                       }}
@@ -87,19 +93,46 @@ function Cart() {
                   </div>
                   <div className="cart__info-container">
                     <div className="cart__info-superior">
-                      <p className="cart__info-name">{item.name}</p>
+                      <div className="cart__delete">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            removeItem(item);
+                          }}
+                        >
+                          <FaTimesCircle />
+                        </button>
+                      </div>
+                      <p className="cart__info-name">{item.produto.nome}</p>
                       <p className="cart__info-description">
                         {item.description}
                       </p>
                     </div>
                     <div className="cart__info-bottom">
-                      <p className="cart__info-price">R$ {item.price}</p>
-                      <p className="cart__info-quantity">{item.quantity}</p>
+                      <p className="cart__info-price">
+                        R${" "}
+                        {parseFloat(item.produto.preco)
+                          .toFixed(2)
+                          .toString()
+                          .replace(".", ",")}
+                      </p>
+                      <p className="cart__info-quantity">{item.quantidade}</p>
                     </div>
                   </div>
                 </div>
               );
             })}
+          <div className="cart__order__container">
+            <button
+              className="cart__order_button"
+              type="button"
+              onClick={() => {
+                console.log("goi");
+              }}
+            >
+              Enviar pedido
+            </button>
+          </div>
         </div>
       </div>
 
@@ -107,7 +140,10 @@ function Cart() {
       <div className="cart__request-container">
         <div className="cart__request-info">
           <p className="cart__request-info-p">Total</p>
-          <p className="cart__request-info-p">{`R$ ${total}`}</p>
+          <p className="cart__request-info-p">{`R$ ${parseFloat(total)
+            .toFixed(2)
+            .toString()
+            .replace(".", ",")}`}</p>
         </div>
       </div>
     </>
