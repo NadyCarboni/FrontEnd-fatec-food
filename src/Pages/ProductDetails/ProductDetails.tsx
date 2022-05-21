@@ -1,6 +1,6 @@
 import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
-import { Checkbox, Input } from "antd";
+import { Alert, Checkbox, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -32,34 +32,9 @@ function ProductDetails() {
   const [postError, setPostError] = useState<any>();
   const { comandId } = useParams<{ comandId?: string }>();
   const [observation, setObservation] = useState("");
+  const [visible, setVisible] = useState(false);
 
-  const [additionalList, setAdditionalList] = useState<any[]>([
-    {
-      id: "1",
-      name: "panquecas de toucinho",
-      price: 10.99,
-    },
-    {
-      id: "2",
-      name: "panquecas de toucinho 2",
-      price: 20.99,
-    },
-    {
-      id: "3",
-      name: "panquecas de toucinho 3",
-      price: 30.99,
-    },
-    {
-      id: "4",
-      name: "panquecas de toucinho 4",
-      price: 40.99,
-    },
-    {
-      id: "5",
-      name: "panquecas de toucinho 5",
-      price: 50.99,
-    },
-  ]);
+  const [additionalList, setAdditionalList] = useState<any[]>([]);
 
   useEffect(() => {
     const getProductsDetails = async () => {
@@ -80,23 +55,26 @@ function ProductDetails() {
   }, [productId]);
 
   const postPedido = async () => {
-    const state = {
-      id: Number(comandId),
-      productId: Number(productId),
+    const newData = {
+      produtoId: Number(productId),
       observacoes: observation,
       pedidoId: 1,
       quantidade: quantity,
     };
 
     try {
-      const response = await api.post(`/Pedido`, { ...state });
-      console.log("response", response);
+      // const response = await api.post(`/ItemSelecionado`, newData);
+      localStorage.setItem("Item", JSON.stringify(newData));
+      localStorage.setItem("Item", JSON.stringify(newData));
+      setVisible(true);
       setLoading(false);
     } catch (err) {
       setPostError(err);
       setLoading(false);
     }
   };
+
+  console.log("additionalList: ", additionalList);
 
   useEffect(() => {
     if (product?.preco) setTotalPrice(quantity * product.preco);
@@ -190,12 +168,15 @@ function ProductDetails() {
 
               {Array.isArray(additionalList) &&
                 additionalList.map((item) => {
+                  console.log(item.nome);
                   if (!item.id) return null;
                   return (
                     <div className="product__additional-card">
                       <div className="product__additional-info">
-                        <p className="product__additional-name">{item.name}</p>
-                        <p className="product__additional-price">+ R$ 2,00</p>
+                        <p className="product__additional-name">{item.nome}</p>
+                        <p className="product__additional-price">
+                          + R$ {item.preco.toFixed(2)}
+                        </p>
                       </div>
                       <div className="product__additional-checkbox-container">
                         <Checkbox className="product__additional-checkbox" />

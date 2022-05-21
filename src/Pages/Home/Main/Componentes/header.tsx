@@ -1,10 +1,15 @@
 import SearchOutlined from "@ant-design/icons/lib/icons/SearchOutlined";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const onSearch = (value: any) => console.log(value);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function onSearch(value: string) {
+    console.log(value);
+  }
+
   return (
     <div id="header">
       <div className="showcase">
@@ -23,9 +28,18 @@ export default function Header() {
           <input
             type="text"
             placeholder="O que está procurando?"
-            className="poppins"
+            className=""
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
           />
-          <button className="submit-lente" type="submit">
+          <button
+            className="submit-lente"
+            type="submit"
+            onClick={() => {
+              onSearch(searchTerm);
+            }}
+          >
             <SearchOutlined className="search-icon" />
           </button>
         </div>

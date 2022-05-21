@@ -7,6 +7,12 @@
   height: 80px;
 }
 
+.product__alert {
+  background-color: rgb(80, 255, 74);
+  position: fixed;
+  top: 0;
+}
+
 .return-button {
   position: fixed;
   left: 2em;

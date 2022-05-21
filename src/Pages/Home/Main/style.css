@@ -46,7 +46,8 @@ a {
 
 .categoria-container {
   text-align: center;
-  margin: 0.5rem;
+  margin: 20px 0.5rem 0.5rem 0.5rem;
+  background-color: transparent;
 }
 .categoria-container .icon {
   height: 4rem;
@@ -140,10 +141,9 @@ a {
 }
 
 .inputSearchContainer input {
-  /* border: var(--gray-50) 1px solid; */
   border-radius: 30px;
   height: 2rem;
-  /* color: var(--gray-200); */
+  color: var(--gray-200);
   width: 100%;
   padding-left: 1rem !important;
   transition: 0.05s;
@@ -154,9 +154,9 @@ a {
   outline: none !important;
   filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 5%));
 }
-/* .inputSearchContainer input:focus ~ .submit-lente {
+.inputSearchContainer input:focus ~ .submit-lente {
   opacity: 1;
-} */
+}
 
 .inputSearchContainer {
   position: relative;
@@ -164,24 +164,24 @@ a {
 }
 
 .submit-lente {
-  /* color: var(--gray-50); */
   cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
-  /* z-index: 10; */
-  /* border: none; */
-  /* background: transparent; */
-  /* outline: none; */
-  /* opacity: 0.5; */
-
-  padding: 1em;
-  height: 20px;
-  width: 20px;
+  color: gray;
+  background-color: transparent;
 }
 
 .search-icon {
-  font-size: 50px;
-  color: rgb(153, 153, 153);
+  color: grey;
+  font-size: 25px;
+}
+
+.search-icon svg {
+  color: gray;
+}
+
+.search-icon path {
+  color: gray;
 }
