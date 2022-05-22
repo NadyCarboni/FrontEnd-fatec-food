@@ -1,6 +1,6 @@
 import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
-import { Checkbox, Input } from "antd";
+import { Alert, Checkbox, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -34,34 +34,9 @@ function ProductDetails() {
   // const { comandId } = useParams<{ comandId?: string }>();
   const comandId = "2";
   const [observation, setObservation] = useState("");
+  const [visible, setVisible] = useState(false);
 
-  const [additionalList, setAdditionalList] = useState<any[]>([
-    {
-      id: "1",
-      name: "panquecas de toucinho",
-      price: 10.99,
-    },
-    {
-      id: "2",
-      name: "panquecas de toucinho 2",
-      price: 20.99,
-    },
-    {
-      id: "3",
-      name: "panquecas de toucinho 3",
-      price: 30.99,
-    },
-    {
-      id: "4",
-      name: "panquecas de toucinho 4",
-      price: 40.99,
-    },
-    {
-      id: "5",
-      name: "panquecas de toucinho 5",
-      price: 50.99,
-    },
-  ]);
+  const [additionalList, setAdditionalList] = useState<any[]>([]);
 
   useEffect(() => {
     const getProductsDetails = async () => {
@@ -112,6 +87,8 @@ function ProductDetails() {
       setLoading(false);
     }
   };
+
+  console.log("additionalList: ", additionalList);
 
   useEffect(() => {
     if (product?.preco) setTotalPrice(quantity * product.preco);
@@ -205,12 +182,15 @@ function ProductDetails() {
 
               {Array.isArray(additionalList) &&
                 additionalList.map((item) => {
+                  console.log(item.nome);
                   if (!item.id) return null;
                   return (
                     <div className="product__additional-card">
                       <div className="product__additional-info">
                         <p className="product__additional-name">{item.nome}</p>
-                        <p className="product__additional-price">+ R$ 2,00</p>
+                        <p className="product__additional-price">
+                          + R$ {item.preco.toFixed(2)}
+                        </p>
                       </div>
                       <div className="product__additional-checkbox-container">
                         <Checkbox
