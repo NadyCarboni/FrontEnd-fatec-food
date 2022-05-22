@@ -185,3 +185,15 @@ a {
 .search-icon path {
   color: gray;
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-icon svg{
+  color: #FF3364 !important;
+  font-size: 100px;
+}

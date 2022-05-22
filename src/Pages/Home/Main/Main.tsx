@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./style.css";
-import { SearchOutlined } from "@ant-design/icons";
+import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 
@@ -17,6 +17,7 @@ export default function Main() {
   const [comandaId, setComandaId] = useState<number>();
   const [searchTerm, setSearchTerm] = useState("");
   const [categorias, setCategorias] = useState<any>([]);
+  const [isLoading, setIsloading] = useState<boolean>(true);
 
   function onSearch(value: string) {
     const searchProducts = async () => {
@@ -56,29 +57,38 @@ export default function Main() {
     // }
     // console.log(localStorage.getItem("itens"));
     const getComandaId = async () => {
+      setIsloading(true);
       try {
         const response = await api.get("/Comanda");
         if (response) setComandaId(response.data.data);
+        setIsloading(false);
       } catch (err) {
         setErrorProduct(err);
+        setIsloading(false);
       }
     };
 
     const getProducts = async () => {
+      setIsloading(true);
       try {
         const response = await api.get("/Produto");
         if (response) setProducts(response.data.data);
+        setIsloading(false);
       } catch (err) {
         setErrorProduct(err);
+        setIsloading(false);
       }
     };
 
     const getCategoria = async () => {
+      setIsloading(true);
       try {
         const response = await api.get("/Categoria");
         if (response) setCategorias(response.data.data);
+        setIsloading(false);
       } catch (err) {
         setErrorProduct(err);
+        setIsloading(false);
       }
     };
 
@@ -86,6 +96,13 @@ export default function Main() {
     getComandaId();
     getProducts();
   }, []);
+
+  if (isLoading)
+    return (
+      <div className="loading-container">
+        <LoadingOutlined className="loading-icon" />
+      </div>
+    );
 
   return (
     <div id="main">
@@ -123,30 +140,33 @@ export default function Main() {
           </div>
         </div>
       </div>
-      <div className="m-4 mb-4">
-        <h4 className="title-name mb-3">Categorias</h4>
-        <div className="horizontal-scroll">
-          {" "}
-          {categorias.map((categoria: any) => {
-            return (
-              <button
-                className="categoria-container flex column align-itens-center mt-2"
-                key={categoria.id}
-                type="submit"
-                onClick={() => {
-                  onSearchCategoria(categoria.id);
-                }}
-              >
-                <div className="icon flex align-itens-center justify-content-center mb-1">
-                  <i className={`fa-solid fa-${categoria.imagem} fa-2x`} />
-                </div>
-                <div className="nome ">{categoria.nome}</div>
-              </button>
-            );
-          })}
+
+      {categorias && (
+        <div className="m-4 mb-4">
+          <h4 className="title-name mb-3">Categorias</h4>
+          <div className="horizontal-scroll">
+            {" "}
+            {categorias.map((categoria: any) => {
+              return (
+                <button
+                  className="categoria-container flex column align-itens-center mt-2"
+                  key={categoria.id}
+                  type="submit"
+                  onClick={() => {
+                    onSearchCategoria(categoria.id);
+                  }}
+                >
+                  <div className="icon flex align-itens-center justify-content-center mb-1">
+                    <i className={`fa-solid fa-${categoria.imagem} fa-2x`} />
+                  </div>
+                  <div className="nome ">{categoria.nome}</div>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <Recomendados productList={products} />
+      )}
+      <Recomendados productList={products} isLoading={isLoading} />
     </div>
   );
 }

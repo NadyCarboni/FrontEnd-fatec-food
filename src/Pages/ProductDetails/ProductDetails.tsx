@@ -2,7 +2,7 @@ import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import { Alert, Checkbox, Input } from "antd";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import api from "../../service/api";
 import Loading from "../Home/Loading/Loading";
@@ -23,7 +23,7 @@ interface IProduct {
 }
 
 function ProductDetails() {
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const { productId } = useParams<{ productId?: string }>();
   const [product, setProduct] = useState<IProduct>();
@@ -35,6 +35,7 @@ function ProductDetails() {
   const comandId = "2";
   const [observation, setObservation] = useState("");
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
 
   const [additionalList, setAdditionalList] = useState<any[]>([]);
 
@@ -46,6 +47,7 @@ function ProductDetails() {
         });
         if (response) setProduct(response.data.data[0]);
         if (response) setAdditionalList(response.data.data[0].adicional);
+        if (response) setTotalPrice(response.data.data[0].preco * quantity);
         setLoading(false);
       } catch (err) {
         setProductError(err);
@@ -81,6 +83,7 @@ function ProductDetails() {
         console.log(JSON.parse(localStorage.getItem("itens")!));
       }
 
+      navigate("/");
       setLoading(false);
     } catch (err) {
       setPostError(err);
@@ -144,10 +147,10 @@ function ProductDetails() {
                     type="button"
                     className="product__quantity-plus"
                     onClick={() => {
-                      if (quantity > 0) {
+                      if (quantity > 1) {
                         setQuantity(quantity - 1);
                       } else {
-                        setQuantity(0);
+                        setQuantity(1);
                       }
                     }}
                   >

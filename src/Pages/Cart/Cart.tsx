@@ -21,7 +21,7 @@ function Cart() {
     }
   }, []);
   // const { comandId } = useParams<{ comandId?: string }>();
-  const comandId = "2";
+  const comandId = "110";
   const [pedido, setPedido] = useState<any>();
   const precos = requestList?.map((p) => p.produto.preco * p.quantidade);
   const somar = (acumulado: number, x: number) => acumulado + x;
@@ -31,8 +31,7 @@ function Cart() {
     // Criar pedido
     const response = await api.post("/Pedido", { comandaId: comandId });
     // Pegar o código ultimo pedido criado
-    const responsePedido = await api.get("/Pedido");
-    const idPedido = responsePedido.data.data.length;
+    const idPedido = Number(response.data.message.replace(/[^\d]+/g, ""));
 
     requestList?.forEach(async (element) => {
       const newData = {
@@ -41,6 +40,8 @@ function Cart() {
         observacoes: element.observacoes,
         pedidoId: idPedido,
       };
+
+      console.log("newData:", newData);
 
       const response = await api.post("/ItemSelecionado", newData);
       console.log("Pedido feito!");

@@ -13,7 +13,7 @@ export default function AppRoutes() {
         <Route path="/:comandId" element={<Home />} />
         <Route path="/" element={<Home />} />
         {/* TROCAR AQUI DEPOIS DOS TESTES */}
-        <Route path="/product/:productId/2" element={<ProductDetails />} />
+        <Route path="/product/:productId/110" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/emptycart" element={<EmptyCart />} />
         {/* <Route path="/cart" element={<Cart />} /> */}
