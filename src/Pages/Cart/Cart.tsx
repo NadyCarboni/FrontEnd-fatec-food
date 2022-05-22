@@ -11,45 +11,44 @@ function Cart() {
   const [requestList, setRequestList] = useState<any[]>(
     JSON.parse(localStorage.getItem("itens")!)
   );
-
+  // const { comandId } = useParams<{ comandId?: string }>();
+  const comandId = "2";
+  const [pedido, setPedido] = useState<any>();
   const precos = requestList.map((p) => p.produto.preco * p.quantidade);
   const somar = (acumulado: number, x: number) => acumulado + x;
   const total = precos.reduce(somar).toFixed(2);
 
   const navigate = useNavigate();
 
-  function arrayRemove(arr: any, value: any) {
-    return arr.filter(function (ele: any) {
-      return ele !== value;
-    });
-  }
-  const removeItem = (item: any) => {
-    // requestList.forEach((element, index) => {
-    //   if (item === element) {
-    //     let aux: any = JSON.parse(localStorage.getItem("itens")!);
-    //     aux = aux.splice(index, 0);
-    //     localStorage.setItem("itens", JSON.stringify(aux));
-    //     if (aux.length === 0) {
-    //       localStorage.removeItem("itens");
-    //       navigate("/emptyCart");
-    //     } else {
-    //       console.log(JSON.parse(localStorage.getItem("itens")!));
-    //     }
-    //     // localStorage.setItem("itens", JSON.stringify(requestList));
-    //     // if (requestList.length === 0) {
-    //     //   localStorage.removeItem("itens");
-    //     //   navigate("/emptyCart");
-    //     // } else {
-    //     //   console.log(requestList);
-    //     // }
-    //   }
-    // });
+  const postOrder = async () => {
+    // Criar pedido
+    const response = await api.post("/Pedido", { comandaId: comandId });
+    // Pegar o código ultimo pedido criado
+    const responsePedido = await api.get("/Pedido");
+    const idPedido = responsePedido.data.data.length;
 
+    requestList.forEach(async (element) => {
+      const newData = {
+        produtoId: element.produtoId,
+        quantidade: element.quantidade,
+        observacoes: element.observacoes,
+        pedidoId: idPedido,
+      };
+
+      const response = await api.post("/ItemSelecionado", newData);
+      console.log("Pedido feito!");
+    });
+
+    localStorage.removeItem("itens");
+    navigate("/emptyCart");
+  };
+
+  const removeItem = (item: any) => {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < requestList.length; i++) {
       if (item === requestList[i]) {
         const aux: any = JSON.parse(localStorage.getItem("itens")!);
-        console.log("aux atual: ", aux);
+
         aux.splice(i, 1);
         localStorage.setItem("itens", JSON.stringify(aux));
         if (aux.length === 0) {
@@ -68,8 +67,6 @@ function Cart() {
           <h2 className="cart__title">Seu Carrinho</h2>
           {Array.isArray(requestList) &&
             requestList.map((item) => {
-              console.log(item);
-
               if (!item.id) return null;
               return (
                 <div className="cart__item-card-container">
@@ -127,7 +124,7 @@ function Cart() {
               className="cart__order_button"
               type="button"
               onClick={() => {
-                console.log("goi");
+                postOrder();
               }}
             >
               Enviar pedido

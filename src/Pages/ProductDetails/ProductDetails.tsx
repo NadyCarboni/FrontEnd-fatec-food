@@ -29,6 +29,7 @@ function ProductDetails() {
   const [product, setProduct] = useState<IProduct>();
   const [productError, setProductError] = useState<any>();
   const [loading, setLoading] = useState(true);
+  const selectAdicional: any = [];
   const [postError, setPostError] = useState<any>();
   // const { comandId } = useParams<{ comandId?: string }>();
   const comandId = "2";
@@ -88,8 +89,8 @@ function ProductDetails() {
         id: Number(comandId),
         produtoId: Number(productId),
         observacoes: observation,
-        pedidoId: 1,
         produto,
+        adicionais: selectAdicional,
         quantidade: quantity,
       };
 
@@ -102,7 +103,7 @@ function ProductDetails() {
         const cartArray = JSON.parse(localStorage.getItem("itens")!);
         cartArray?.push({ ...state });
         localStorage.setItem("itens", JSON.stringify(cartArray));
-        console.log(localStorage.getItem("itens"));
+        console.log(JSON.parse(localStorage.getItem("itens")!));
       }
 
       setLoading(false);
@@ -200,7 +201,7 @@ function ProductDetails() {
 
           {additionalList.length > 0 && (
             <div className="product__additional-container">
-              <p className="section-tittle">Adcionais</p>
+              <p className="section-tittle">Adicionais</p>
 
               {Array.isArray(additionalList) &&
                 additionalList.map((item) => {
@@ -208,11 +209,28 @@ function ProductDetails() {
                   return (
                     <div className="product__additional-card">
                       <div className="product__additional-info">
-                        <p className="product__additional-name">{item.name}</p>
+                        <p className="product__additional-name">{item.nome}</p>
                         <p className="product__additional-price">+ R$ 2,00</p>
                       </div>
                       <div className="product__additional-checkbox-container">
-                        <Checkbox className="product__additional-checkbox" />
+                        <Checkbox
+                          className="product__additional-checkbox"
+                          value={item}
+                          onChange={(e: any) => {
+                            if (e.target.checked === true) {
+                              selectAdicional.push(item);
+                              console.log(selectAdicional);
+                            } else {
+                              // eslint-disable-next-line no-plusplus
+                              for (let i = 0; i < selectAdicional.length; i++) {
+                                if (item === selectAdicional[i]) {
+                                  selectAdicional.splice(i, 1);
+                                  console.log(selectAdicional);
+                                }
+                              }
+                            }
+                          }}
+                        />
                       </div>
                     </div>
                   );
