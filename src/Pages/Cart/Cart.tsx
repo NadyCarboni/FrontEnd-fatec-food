@@ -1,7 +1,8 @@
+import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import { FaTimesCircle } from "@react-icons/all-files/fa/FaTimesCircle";
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import api from "../../service/api";
 
@@ -13,6 +14,8 @@ function Cart() {
 
   const navigate = useNavigate();
 
+  const [adicionalList, setAdcionalList] = useState<any[]>();
+
   useEffect(() => {
     const listValue = JSON.parse(localStorage.getItem("itens")!);
 
@@ -20,8 +23,8 @@ function Cart() {
       setRequestList(listValue);
     }
   }, []);
-  // const { comandId } = useParams<{ comandId?: string }>();
-  const comandId = "110";
+
+  const { comandId } = useParams<{ comandId?: string }>();
   const [pedido, setPedido] = useState<any>();
   const precos = requestList?.map((p) => p.produto.preco * p.quantidade);
   const somar = (acumulado: number, x: number) => acumulado + x;
@@ -41,9 +44,25 @@ function Cart() {
         pedidoId: idPedido,
       };
 
-      console.log("newData:", newData);
-
       const response = await api.post("/ItemSelecionado", newData);
+      console.log("response item selecionado: ", response);
+
+      const idItemSelecionado = Number(
+        response.data.message.replace(/[^\d]+/g, "")
+      );
+
+      if (Array.isArray(element.adicionais)) {
+        element.adicionais?.forEach(async (item: { id: any }) => {
+          const state = {
+            adicionalId: item.id,
+            itemSelecionadoId: idItemSelecionado,
+          };
+
+          console.log("state", state);
+          const response = await api.post("/AdicionalSelecionado", state);
+        });
+      }
+
       console.log("Pedido feito!");
     });
 
@@ -68,12 +87,31 @@ function Cart() {
       }
     }
   };
+
+  if (!comandId) {
+    return (
+      <div className="product-error">
+        <div className="product-error-container">
+          <CloseCircleFilled className="product-error-icon" />
+          <p className="product-error-title">Ops!</p>
+          <p>comanda não encontrada</p>
+        </div>
+      </div>
+    );
+  }
+
+  console.log("requestList:", requestList);
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {requestList ? (
         <>
           <div className="cart">
+            <div className="return-button">
+              <Link to={`/${comandId}`}>
+                <LeftOutlined className="return-button-icon" />
+              </Link>
+            </div>
             <div className="cart-container">
               <h2 className="cart__title">Seu Carrinho</h2>
               {Array.isArray(requestList) &&

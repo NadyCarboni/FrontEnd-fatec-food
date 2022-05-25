@@ -15,7 +15,7 @@ export default function Produto({ name, price, image, id }: IProducts) {
   // const comandId = 1;
   return (
     // TROCAR AQUI
-    <Link to={`/product/${id}/2`}>
+    <Link to={`/product/${id}/${comandId}`}>
       <div className="container-produto flex column pb-1">
         <img src={`http://54.175.22.87${image}`} alt="" />
         <div className="legenda">

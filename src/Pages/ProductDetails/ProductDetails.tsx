@@ -31,8 +31,7 @@ function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const selectAdicional: any = [];
   const [postError, setPostError] = useState<any>();
-  // const { comandId } = useParams<{ comandId?: string }>();
-  const comandId = "2";
+  const { comandId } = useParams<{ comandId?: string }>();
   const [observation, setObservation] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
@@ -83,15 +82,13 @@ function ProductDetails() {
         console.log(JSON.parse(localStorage.getItem("itens")!));
       }
 
-      navigate("/");
+      navigate(`/${comandId}`);
       setLoading(false);
     } catch (err) {
       setPostError(err);
       setLoading(false);
     }
   };
-
-  console.log("additionalList: ", additionalList);
 
   useEffect(() => {
     if (product?.preco) setTotalPrice(quantity * product.preco);
@@ -113,7 +110,7 @@ function ProductDetails() {
   return (
     <div className="product">
       <div className="return-button">
-        <Link to="/">
+        <Link to={`/${comandId}`}>
           <LeftOutlined className="return-button-icon" />
         </Link>
       </div>

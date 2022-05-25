@@ -1,16 +1,17 @@
 import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import "./cart.css";
 
 function EmptyCart() {
+  const { comandId } = useParams<{ comandId?: string }>();
   return (
     <>
       <div className="cart">
         <div className="return-button">
-          <Link to="/">
+          <Link to={`/${comandId}`}>
             <LeftOutlined className="return-button-icon" />
           </Link>
         </div>

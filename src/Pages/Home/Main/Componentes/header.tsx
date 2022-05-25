@@ -25,7 +25,7 @@ export default function Header() {
               <AiOutlineShoppingCart size="2em" />
             </Link>
           ) : (
-            <Link to="/cart">
+            <Link to="/cart/">
               <AiOutlineShoppingCart size="2em" />
             </Link>
           )}

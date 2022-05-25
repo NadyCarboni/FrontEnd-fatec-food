@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import "./style.css";
-import { LoadingOutlined, SearchOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import {
+  CloseCircleFilled,
+  LoadingOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { Link, useParams } from "react-router-dom";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 
 import api from "../../../service/api";
@@ -14,7 +18,7 @@ export default function Main() {
   const [activeKey, setActiveKey] = useState("home");
   const [products, setProducts] = useState<any>();
   const [errorProduct, setErrorProduct] = useState<any>();
-  const [comandaId, setComandaId] = useState<number>();
+  const { comandId } = useParams<{ comandId?: string }>();
   const [searchTerm, setSearchTerm] = useState("");
   const [categorias, setCategorias] = useState<any>([]);
   const [isLoading, setIsloading] = useState<boolean>(true);
@@ -56,17 +60,6 @@ export default function Main() {
     //   console.log(localStorage.getItem("itens"));
     // }
     // console.log(localStorage.getItem("itens"));
-    const getComandaId = async () => {
-      setIsloading(true);
-      try {
-        const response = await api.get("/Comanda");
-        if (response) setComandaId(response.data.data);
-        setIsloading(false);
-      } catch (err) {
-        setErrorProduct(err);
-        setIsloading(false);
-      }
-    };
 
     const getProducts = async () => {
       setIsloading(true);
@@ -93,9 +86,20 @@ export default function Main() {
     };
 
     getCategoria();
-    getComandaId();
     getProducts();
   }, []);
+
+  if (!comandId) {
+    return (
+      <div className="product-error">
+        <div className="product-error-container">
+          <CloseCircleFilled className="product-error-icon" />
+          <p className="product-error-title">Ops!</p>
+          <p>comanda não encontrada</p>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading)
     return (
@@ -115,7 +119,7 @@ export default function Main() {
                 Deliciosos pratos para você escolher
               </p>
             </div>
-            <Link to="/cart">
+            <Link to={`/cart/${comandId}`}>
               <AiOutlineShoppingCart size="2em" />
             </Link>
           </div>
