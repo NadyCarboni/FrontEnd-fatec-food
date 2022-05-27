@@ -18,7 +18,7 @@ export default function AppRoutes() {
           element={<ProductDetails />}
         />
         <Route path="/cart/:comandId" element={<Cart />} />
-        <Route path="/emptycart" element={<EmptyCart />} />
+        <Route path="/emptycart/:comandId" element={<EmptyCart />} />
       </Routes>
     </Router>
   );

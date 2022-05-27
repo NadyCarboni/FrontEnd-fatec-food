@@ -32,7 +32,7 @@ function Cart() {
 
   const postOrder = async () => {
     // Criar pedido
-    const response = await api.post("/Pedido", { comandaId: comandId });
+    const response = await api.post("/Pedido", { comandaId: Number(comandId) });
     // Pegar o código ultimo pedido criado
     const idPedido = Number(response.data.message.replace(/[^\d]+/g, ""));
 
@@ -67,7 +67,7 @@ function Cart() {
     });
 
     localStorage.removeItem("itens");
-    navigate("/emptyCart");
+    navigate(`/emptyCart/${comandId}`);
   };
 
   const removeItem = (item: any) => {
