@@ -100,7 +100,7 @@ function Cart() {
     );
   }
 
-  console.log("requestList:", requestList);
+  console.log(`/${comandId}`);
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
@@ -119,12 +119,6 @@ function Cart() {
                   if (!item.id) return null;
                   return (
                     <div className="cart__item-card-container">
-                      <div className="return-button">
-                        <Link to="/">
-                          <LeftOutlined className="return-button-icon" />
-                        </Link>
-                      </div>
-
                       <div className="cart__img-container">
                         <div
                           className="cart__img"
