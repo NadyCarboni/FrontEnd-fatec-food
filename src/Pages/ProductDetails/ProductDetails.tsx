@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import { Alert, Checkbox, Input } from "antd";
@@ -8,6 +9,7 @@ import api from "../../service/api";
 import Loading from "../Home/Loading/Loading";
 import "./ProductDetails.css";
 
+const { API_URL } = process.env;
 const { TextArea } = Input;
 
 interface IProduct {
@@ -119,7 +121,7 @@ function ProductDetails() {
           className="product-img"
           style={{
             backgroundImage: `url('${
-              product?.foto ? `http://54.175.22.87${product?.foto}` : "n/a"
+              product?.foto ? API_URL + product?.foto : "n/a"
             }')`,
           }}
         />
