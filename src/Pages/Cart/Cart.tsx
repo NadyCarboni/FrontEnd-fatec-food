@@ -8,7 +8,7 @@ import api from "../../service/api";
 import "./cart.css";
 import EmptyCart from "./EmptyCart";
 
-const { API_URL } = process.env;
+// const { API_URL } = process.env;
 
 function Cart() {
   const [requestList, setRequestList] = useState<any[]>();
@@ -126,7 +126,7 @@ function Cart() {
                           style={{
                             backgroundImage: `url('${
                               item.produto.foto
-                                ? API_URL + item.produto.foto
+                                ? `http://localhost:5000${item.produto.foto}`
                                 : "https://corevisionbucket.s3.sa-east-1.amazonaws.com/NewsNegcios/unauth/bgpadropng13-12-2021-112927-m61644d0bceb66318d818b1dc-u61644d0bceb66318d818b1dc-authproducts6197f92b00c03058f0da46ec.png"
                             }')`,
                           }}

@@ -9,7 +9,7 @@ import api from "../../service/api";
 import Loading from "../Home/Loading/Loading";
 import "./ProductDetails.css";
 
-const { API_URL } = process.env;
+// const { API_URL } = process.env;
 const { TextArea } = Input;
 
 interface IProduct {
@@ -121,7 +121,7 @@ function ProductDetails() {
           className="product-img"
           style={{
             backgroundImage: `url('${
-              product?.foto ? API_URL + product?.foto : "n/a"
+              product?.foto ? `http://localhost:5000${product?.foto}` : "n/a"
             }')`,
           }}
         />
