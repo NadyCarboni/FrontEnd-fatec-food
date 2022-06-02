@@ -121,7 +121,9 @@ function ProductDetails() {
           className="product-img"
           style={{
             backgroundImage: `url('${
-              product?.foto ? `http://localhost:5000${product?.foto}` : "n/a"
+              product?.foto
+                ? `http://34.230.58.123:5000${product?.foto}`
+                : "n/a"
             }')`,
           }}
         />

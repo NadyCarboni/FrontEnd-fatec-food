@@ -19,7 +19,7 @@ export default function Produto({ name, price, image, id }: IProducts) {
     // TROCAR AQUI
     <Link to={`/product/${id}/${comandId}`}>
       <div className="container-produto flex column pb-1">
-        <img src={`http://localhost:5000${image}`} alt="" />
+        <img src={`http://34.230.58.123:5000${image}`} alt="" />
         <div className="legenda">
           <h4 className="font-weight-500">{name}</h4>
           <p className="font-weight-200">R$ {price}</p>
