@@ -42,7 +42,6 @@ export default function Main() {
     const onSearchCategoria = async () => {
       try {
         const response = await api.get(`/Produto/Categoria?id=${value}`);
-        console.log("response: ", response);
         if (response) setProducts(response.data.data);
       } catch (err) {
         setErrorProduct(err);
@@ -97,8 +96,6 @@ export default function Main() {
       setRequestList(listValue);
     }
   }, []);
-
-  console.log(requestList.lenght);
 
   if (!comandId) {
     return (
