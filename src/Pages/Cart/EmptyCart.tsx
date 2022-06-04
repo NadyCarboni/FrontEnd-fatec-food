@@ -3,12 +3,29 @@ import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import Alert from "../../components/Alert";
+
 import "./cart.css";
 
 function EmptyCart() {
   const { comandId } = useParams<{ comandId?: string }>();
+  const { succes } = useParams<{ succes?: string }>();
+
+  const [alertClosed, setAlertClosed] = useState<boolean>(false);
+  const alertMessage = "Pedido enviado com sucesso";
+
+  useEffect(() => {
+    if (succes === "true") setAlertClosed(true);
+  }, [succes]);
   return (
     <>
+      {alertClosed && (
+        <Alert
+          status="succes"
+          message={alertMessage}
+          closeAlert={setAlertClosed}
+        />
+      )}
       <div className="cart">
         <div className="return-button">
           <Link to={`/${comandId}`}>

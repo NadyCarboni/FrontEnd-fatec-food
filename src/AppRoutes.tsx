@@ -12,13 +12,13 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/:comandId" element={<Home />} />
         <Route path="/" element={<Home />} />
-        {/* TROCAR AQUI DEPOIS DOS TESTES */}
         <Route
           path="/product/:productId/:comandId"
           element={<ProductDetails />}
         />
         <Route path="/cart/:comandId" element={<Cart />} />
         <Route path="/emptycart/:comandId" element={<EmptyCart />} />
+        <Route path="/emptycart/:comandId/:succes" element={<EmptyCart />} />
       </Routes>
     </Router>
   );

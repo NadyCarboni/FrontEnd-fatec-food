@@ -4,18 +4,16 @@ import { FaTimesCircle } from "@react-icons/all-files/fa/FaTimesCircle";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+import Alert from "../../components/Alert";
 import api from "../../service/api";
+
 import "./cart.css";
 import EmptyCart from "./EmptyCart";
-
-// const { API_URL } = process.env;
 
 function Cart() {
   const [requestList, setRequestList] = useState<any[]>();
 
   const navigate = useNavigate();
-
-  const [adicionalList, setAdcionalList] = useState<any[]>();
 
   useEffect(() => {
     const listValue = JSON.parse(localStorage.getItem("itens")!);
@@ -26,7 +24,6 @@ function Cart() {
   }, []);
 
   const { comandId } = useParams<{ comandId?: string }>();
-  const [pedido, setPedido] = useState<any>();
   const precos = requestList?.map((p) => p.produto.preco * p.quantidade);
   const somar = (acumulado: number, x: number) => acumulado + x;
   const total = precos?.reduce(somar).toFixed(2);
@@ -63,12 +60,11 @@ function Cart() {
           const response = await api.post("/AdicionalSelecionado", state);
         });
       }
-
+      localStorage.removeItem("itens");
       console.log("Pedido feito!");
     });
 
-    localStorage.removeItem("itens");
-    navigate(`/emptyCart/${comandId}`);
+    navigate(`/emptyCart/${comandId}/${true}`);
   };
 
   const removeItem = (item: any) => {
@@ -81,7 +77,7 @@ function Cart() {
         localStorage.setItem("itens", JSON.stringify(aux));
         if (aux.length === 0) {
           localStorage.removeItem("itens");
-          navigate("/emptyCart");
+          navigate(`/emptyCart/${comandId}`);
         } else {
           setRequestList(aux);
         }
@@ -101,7 +97,6 @@ function Cart() {
     );
   }
 
-  console.log(`/${comandId}`);
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
@@ -126,7 +121,7 @@ function Cart() {
                           style={{
                             backgroundImage: `url('${
                               item.produto.foto
-                                ? `http://34.230.58.123:5000${item.produto.foto}`
+                                ? `http://54.175.22.87${item.produto.foto}`
                                 : "https://corevisionbucket.s3.sa-east-1.amazonaws.com/NewsNegcios/unauth/bgpadropng13-12-2021-112927-m61644d0bceb66318d818b1dc-u61644d0bceb66318d818b1dc-authproducts6197f92b00c03058f0da46ec.png"
                             }')`,
                           }}
