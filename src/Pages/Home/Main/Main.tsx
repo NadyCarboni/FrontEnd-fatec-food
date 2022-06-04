@@ -22,6 +22,7 @@ export default function Main() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categorias, setCategorias] = useState<any>([]);
   const [isLoading, setIsloading] = useState<boolean>(true);
+  const [requestList, setRequestList] = useState<any>();
 
   function onSearch(value: string) {
     const searchProducts = async () => {
@@ -89,6 +90,14 @@ export default function Main() {
     getProducts();
   }, []);
 
+  useEffect(() => {
+    const listValue = JSON.parse(localStorage.getItem("itens")!);
+
+    if (listValue) {
+      setRequestList(listValue);
+    }
+  }, []);
+
   if (!comandId) {
     return (
       <div className="product-error">
@@ -121,6 +130,7 @@ export default function Main() {
             </div>
             <Link to={`/cart/${comandId}`}>
               <AiOutlineShoppingCart size="2em" />
+              <p className="cart-lenght">{requestList.length}</p>
             </Link>
           </div>
           <div className="inputSearchContainer">

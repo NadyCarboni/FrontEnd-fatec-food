@@ -197,3 +197,16 @@ a {
   color: #FF3364 !important;
   font-size: 100px;
 }
+
+.cart-lenght {
+  background-color: white;
+  color: #FF3364;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding-top: 1px;
+  transform: translateX(18px) translateY(-23px);
+}
