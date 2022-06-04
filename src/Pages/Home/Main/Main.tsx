@@ -22,7 +22,7 @@ export default function Main() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categorias, setCategorias] = useState<any>([]);
   const [isLoading, setIsloading] = useState<boolean>(true);
-  const [requestList, setRequestList] = useState<any>();
+  const [requestList, setRequestList] = useState<any>([]);
 
   function onSearch(value: string) {
     const searchProducts = async () => {
@@ -98,6 +98,8 @@ export default function Main() {
     }
   }, []);
 
+  console.log(requestList.lenght);
+
   if (!comandId) {
     return (
       <div className="product-error">
@@ -130,9 +132,13 @@ export default function Main() {
             </div>
             <Link to={`/cart/${comandId}`}>
               <AiOutlineShoppingCart size="2em" />
-              {requestList?.lenght > 0 && (
+              {requestList.length > 0 ? (
                 <p className="cart-lenght">{requestList.length}</p>
+              ) : (
+                // eslint-disable-next-line react/jsx-no-useless-fragment
+                <></>
               )}
+              {/* <p className="cart-lenght">{requestList.length}</p> */}
             </Link>
           </div>
           <div className="inputSearchContainer">
