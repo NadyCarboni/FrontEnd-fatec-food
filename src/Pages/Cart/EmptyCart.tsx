@@ -1,4 +1,4 @@
-import { CloseCircleFilled } from "@ant-design/icons";
+import { ExclamationCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -19,7 +19,7 @@ function EmptyCart() {
 
         <div className="cart-error">
           <div className="cart-error-container">
-            <CloseCircleFilled className="cart-error-icon" />
+            <ExclamationCircleFilled className="cart-error-icon" />
             <p className="cart-error-title">Ops!</p>
             <p>Seu carrinho está vazio.</p>
           </div>
