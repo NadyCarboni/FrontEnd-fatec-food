@@ -22,7 +22,9 @@ function Recomendados({ productList, isLoading }: IProductList) {
   const [products, setProducts] = useState<IProducts[]>([]);
 
   useEffect(() => {
-    if (productList) setProducts(productList);
+    if (productList) {
+      setProducts(productList.filter((item) => item.ativo));
+    }
   }, [productList]);
 
   return (

@@ -47,7 +47,12 @@ function ProductDetails() {
           params: { id: productId },
         });
         if (response) setProduct(response.data.data[0]);
-        if (response) setAdditionalList(response.data.data[0].adicional);
+        if (response)
+          setAdditionalList(
+            response.data.data[0].adicional.filter(
+              (item: { ativo: any }) => item.ativo
+            )
+          );
         if (response) setTotalPrice(response.data.data[0].preco * quantity);
         setLoading(false);
       } catch (err) {
