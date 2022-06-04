@@ -130,7 +130,9 @@ export default function Main() {
             </div>
             <Link to={`/cart/${comandId}`}>
               <AiOutlineShoppingCart size="2em" />
-              <p className="cart-lenght">{requestList.length}</p>
+              {requestList?.lenght > 0 && (
+                <p className="cart-lenght">{requestList.length}</p>
+              )}
             </Link>
           </div>
           <div className="inputSearchContainer">
