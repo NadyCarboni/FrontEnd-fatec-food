@@ -48,7 +48,7 @@
 }
 
 .product-img {
-  background-image: url('https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg');
+  background-image: url("https://cdn.discordapp.com/attachments/691792050831622174/964349691422711838/chad-montano-eeqbbemH9-c-unsplash.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -77,7 +77,7 @@
 }
 
 .product__serve {
-  color: #CACACA;
+  color: #cacaca;
   margin-bottom: 40px;
 }
 
@@ -111,19 +111,22 @@
 }
 
 .product__quantity-plus {
-  padding: .4em .7em;
+  padding: 0.4em 0.7em;
   border-radius: 10px;
   border-color: transparent;
-  background-color: #FF3364;
+  background-color: #ff3364;
   color: white;
-  
 }
 
 .product__description-container {
   padding: 30px 2em;
-  background-color: #3E3E3E;
+  background-color: #3e3e3e;
   border-radius: 0px 50px 50px 0px / 0px 50px 50px 1px;
   margin-bottom: 20px;
+}
+
+.product__description {
+  word-wrap: break-word;
 }
 
 .product__additional-container {
@@ -137,7 +140,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  border-bottom: 1px solid #3E3E3E;
+  border-bottom: 1px solid #3e3e3e;
   margin-bottom: 20px;
   padding-bottom: 1em;
 }
@@ -180,7 +183,7 @@
 
 .product__text-area {
   width: 100%;
-  background-color: #3E3E3E !important;
+  background-color: #3e3e3e !important;
   border-radius: 10px;
   padding: 1em;
 }
@@ -193,39 +196,40 @@
 }
 
 .product__final-price {
-  background-color: #FF6187;
+  background-color: #ff6187;
   display: inline-block;
   border-radius: 20px;
   padding: 1.3em;
-
 }
 
 .product__add {
-  background-color: #FF3364;
+  background-color: #ff3364;
   color: white;
   border-color: transparent;
-  padding: .8em 3em;
+  padding: 0.8em 3em;
   border-radius: 20px 0px 0px 20px;
   font-size: 1.3em;
   font-weight: bold;
 }
 
 .ant-checkbox-indeterminate .ant-checkbox-inner::after {
-  background-color: #FF3364;
+  background-color: #ff3364;
 }
 
 .ant-checkbox-inner {
-  border-color: #FF3364;
+  border-color: #ff3364;
 }
-.ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner{
-  border-color: #FF3364;
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: #ff3364;
 }
-.ant-checkbox-checked .ant-checkbox-inner{
-  background-color: #FF3364;
-  border-color: #FF3364;
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #ff3364;
+  border-color: #ff3364;
 }
 .ant-checkbox-checked::after {
-  border-color: #FF3364;
+  border-color: #ff3364;
 }
 
 .padding {
@@ -242,11 +246,11 @@
 .product-error-container {
   height: 40vh;
   width: 70%;
-  display:flex ;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #FF3364;
+  background-color: #ff3364;
   border-radius: 80px;
   padding: 1em 2em;
   text-align: center;
