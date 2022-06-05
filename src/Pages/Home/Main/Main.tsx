@@ -52,27 +52,19 @@ export default function Main() {
     onSearchCategoria();
   }
 
+  const getProducts = async () => {
+    setIsloading(true);
+    try {
+      const response = await api.get("/Produto");
+      if (response) setProducts(response.data.data);
+      setIsloading(false);
+    } catch (err) {
+      setErrorProduct(err);
+      setIsloading(false);
+    }
+  };
+
   useEffect(() => {
-    // console.log(localStorage.removeItem("itens"));
-    // if (!localStorage.getItem("itens")) {
-    //   const cartArray: any[] = [];
-    //   localStorage.setItem("itens", JSON.stringify(cartArray));
-    //   console.log(localStorage.getItem("itens"));
-    // }
-    // console.log(localStorage.getItem("itens"));
-
-    const getProducts = async () => {
-      setIsloading(true);
-      try {
-        const response = await api.get("/Produto");
-        if (response) setProducts(response.data.data);
-        setIsloading(false);
-      } catch (err) {
-        setErrorProduct(err);
-        setIsloading(false);
-      }
-    };
-
     const getCategoria = async () => {
       setIsloading(true);
       try {
@@ -162,7 +154,18 @@ export default function Main() {
 
       {categorias && (
         <div className="m-4 mb-4">
-          <h4 className="title-name mb-3">Categorias</h4>
+          <div className="categorias-header mb-3">
+            <h4 className="title-name">Categorias</h4>
+            <button
+              className="see-all"
+              type="button"
+              onClick={() => {
+                getProducts();
+              }}
+            >
+              Ver todas
+            </button>
+          </div>
           <div className="horizontal-scroll">
             {" "}
             {categorias.map((categoria: any) => {

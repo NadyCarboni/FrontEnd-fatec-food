@@ -210,3 +210,15 @@ a {
   padding-top: 1px;
   transform: translateX(18px) translateY(-23px);
 }
+
+.categorias-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.see-all {
+  background-color: #3d3d3d;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
