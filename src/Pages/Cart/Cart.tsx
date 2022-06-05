@@ -121,7 +121,7 @@ function Cart() {
                           style={{
                             backgroundImage: `url('${
                               item.produto.foto
-                                ? `http://54.175.22.87${item.produto.foto}`
+                                ? `http://34.230.58.123:5000${item.produto.foto}`
                                 : "https://corevisionbucket.s3.sa-east-1.amazonaws.com/NewsNegcios/unauth/bgpadropng13-12-2021-112927-m61644d0bceb66318d818b1dc-u61644d0bceb66318d818b1dc-authproducts6197f92b00c03058f0da46ec.png"
                             }')`,
                           }}

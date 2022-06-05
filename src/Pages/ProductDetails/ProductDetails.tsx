@@ -243,9 +243,10 @@ function ProductDetails() {
           </div>
 
           <div className="product__final-section">
-            <p className="product__final-price">{`R$ ${totalPrice.toFixed(
-              2
-            )}`}</p>
+            <p className="product__final-price">{`R$ ${totalPrice
+              .toFixed(2)
+              .toString()
+              .replace(".", ",")}`}</p>
             <button
               className="product__add"
               type="button"
