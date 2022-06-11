@@ -2,6 +2,7 @@
 import { CloseCircleFilled } from "@ant-design/icons";
 import LeftOutlined from "@ant-design/icons/lib/icons/LeftOutlined";
 import { Alert, Checkbox, Input } from "antd";
+import { Item } from "framer-motion/types/components/Reorder/Item";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -28,9 +29,10 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState<number>(1);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const { productId } = useParams<{ productId?: string }>();
-  const [product, setProduct] = useState<IProduct>();
+  const [product, setProduct] = useState<any>();
   const [productError, setProductError] = useState<any>();
   const [loading, setLoading] = useState(true);
+  const [adicionalPreco, setAdicionalPreco] = useState<number>(0);
   const selectAdicional: any = [];
   const [postError, setPostError] = useState<any>();
   const { comandId } = useParams<{ comandId?: string }>();
@@ -39,6 +41,13 @@ function ProductDetails() {
   const navigate = useNavigate();
 
   const [additionalList, setAdditionalList] = useState<any[]>([]);
+  const getPreco = () => {
+    console.log(adicionalPreco);
+    const precoProduto = quantity * product?.preco;
+    const precoAdicional = adicionalPreco * quantity;
+
+    return precoProduto + precoAdicional;
+  };
 
   useEffect(() => {
     const getProductsDetails = async () => {
@@ -98,7 +107,9 @@ function ProductDetails() {
   };
 
   useEffect(() => {
-    if (product?.preco) setTotalPrice(quantity * product.preco);
+    if (product?.preco)
+      setTotalPrice(quantity * product.preco + adicionalPreco * quantity);
+    getPreco();
   }, [quantity]);
 
   if (loading) return <Loading />;
@@ -206,10 +217,12 @@ function ProductDetails() {
                           className="product__additional-checkbox"
                           value={item}
                           onChange={(e: any) => {
+                            console.log(e.target.checked);
                             if (e.target.checked === true) {
                               selectAdicional.push(item);
-                              console.log(selectAdicional);
+                              setAdicionalPreco(adicionalPreco + item.preco);
                             } else {
+                              setAdicionalPreco(adicionalPreco - item.preco);
                               // eslint-disable-next-line no-plusplus
                               for (let i = 0; i < selectAdicional.length; i++) {
                                 if (item === selectAdicional[i]) {
@@ -243,10 +256,7 @@ function ProductDetails() {
           </div>
 
           <div className="product__final-section">
-            <p className="product__final-price">{`R$ ${totalPrice
-              .toFixed(2)
-              .toString()
-              .replace(".", ",")}`}</p>
+            <p className="product__final-price">{`R$ ${getPreco()}`}</p>
             <button
               className="product__add"
               type="button"

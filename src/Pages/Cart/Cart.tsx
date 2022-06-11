@@ -25,6 +25,7 @@ function Cart() {
 
   const { comandId } = useParams<{ comandId?: string }>();
   const precos = requestList?.map((p) => p.produto.preco * p.quantidade);
+  // const precosAdicionais = requestList?.map((p)=> p.produto.)
   const somar = (acumulado: number, x: number) => acumulado + x;
   const total = precos?.reduce(somar).toFixed(2);
 
