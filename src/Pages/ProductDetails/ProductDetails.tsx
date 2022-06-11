@@ -33,7 +33,7 @@ function ProductDetails() {
   const [productError, setProductError] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [adicionalPreco, setAdicionalPreco] = useState<number>(0);
-  const selectAdicional: any = [];
+  const [selectAdicional, setSelectAdicional] = useState<any>([]);
   const [postError, setPostError] = useState<any>();
   const { comandId } = useParams<{ comandId?: string }>();
   const [observation, setObservation] = useState("");
@@ -77,6 +77,7 @@ function ProductDetails() {
     try {
       const response = await api.get(`/Produto/Individual?id=${productId}`);
       const produto = response.data.data[0];
+      console.log(selectAdicional);
       const state = {
         id: Number(comandId),
         produtoId: Number(productId),
@@ -85,6 +86,7 @@ function ProductDetails() {
         adicionais: selectAdicional,
         quantidade: quantity,
       };
+      console.log(state);
 
       if (!localStorage.getItem("itens")) {
         localStorage.setItem("itens", JSON.stringify([])); // Iniciar carrinho
@@ -219,7 +221,11 @@ function ProductDetails() {
                           onChange={(e: any) => {
                             console.log(e.target.checked);
                             if (e.target.checked === true) {
-                              selectAdicional.push(item);
+                              setSelectAdicional((selectAdicional: any) => [
+                                ...selectAdicional,
+                                item,
+                              ]);
+
                               setAdicionalPreco(adicionalPreco + item.preco);
                             } else {
                               setAdicionalPreco(adicionalPreco - item.preco);
@@ -256,7 +262,10 @@ function ProductDetails() {
           </div>
 
           <div className="product__final-section">
-            <p className="product__final-price">{`R$ ${getPreco()}`}</p>
+            <p className="product__final-price">{`R$ ${getPreco()
+              .toFixed(2)
+              .toString()
+              .replace(".", ",")}`}</p>
             <button
               className="product__add"
               type="button"

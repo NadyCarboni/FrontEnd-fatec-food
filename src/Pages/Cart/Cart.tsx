@@ -22,11 +22,31 @@ function Cart() {
       setRequestList(listValue);
     }
   }, []);
+  // const getPreco = () => {
+  //   console.log(adicionalPreco);
+  //   const precoProduto = quantity * product?.preco;
+  //   const precoAdicional = adicionalPreco * quantity;
 
+  //   return precoProduto + precoAdicional;
+  // };
   const { comandId } = useParams<{ comandId?: string }>();
+  const precosAdicionais = () => {
+    let totalAdicional = 0;
+    requestList?.forEach((produto) => {
+      produto.adicionais.forEach((adicional: any) => {
+        totalAdicional =
+          adicional.preco * parseFloat(produto.quantidade) + totalAdicional;
+      });
+    });
+
+    return totalAdicional;
+  };
+
   const precos = requestList?.map((p) => p.produto.preco * p.quantidade);
   // const precosAdicionais = requestList?.map((p)=> p.produto.)
-  const somar = (acumulado: number, x: number) => acumulado + x;
+
+  const somar = (acumulado: number, x: number) =>
+    acumulado + x + precosAdicionais();
   const total = precos?.reduce(somar).toFixed(2);
 
   const postOrder = async () => {
