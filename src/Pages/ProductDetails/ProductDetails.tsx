@@ -83,6 +83,7 @@ function ProductDetails() {
         produtoId: Number(productId),
         observacoes: observation,
         produto,
+        preco: getPreco(),
         adicionais: selectAdicional,
         quantidade: quantity,
       };

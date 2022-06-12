@@ -30,23 +30,22 @@ function Cart() {
   //   return precoProduto + precoAdicional;
   // };
   const { comandId } = useParams<{ comandId?: string }>();
-  const precosAdicionais = () => {
-    let totalAdicional = 0;
-    requestList?.forEach((produto) => {
-      produto.adicionais.forEach((adicional: any) => {
-        totalAdicional =
-          adicional.preco * parseFloat(produto.quantidade) + totalAdicional;
-      });
-    });
+  // const precosAdicionais = () => {
+  //   let totalAdicional = 0;
+  //   requestList?.forEach((produto) => {
+  //     produto.adicionais.forEach((adicional: any) => {
+  //       totalAdicional =
+  //         adicional.preco * parseFloat(produto.quantidade) + totalAdicional;
+  //     });
+  //   });
 
-    return totalAdicional;
-  };
+  //   return totalAdicional;
+  // };
 
-  const precos = requestList?.map((p) => p.produto.preco * p.quantidade);
+  const precos = requestList?.map((p) => p.preco);
   // const precosAdicionais = requestList?.map((p)=> p.produto.)
 
-  const somar = (acumulado: number, x: number) =>
-    acumulado + x + precosAdicionais();
+  const somar = (acumulado: number, x: number) => acumulado + x;
   const total = precos?.reduce(somar).toFixed(2);
 
   const postOrder = async () => {
@@ -168,7 +167,7 @@ function Cart() {
                         <div className="cart__info-bottom">
                           <p className="cart__info-price">
                             R${" "}
-                            {parseFloat(item.produto.preco)
+                            {parseFloat(item.preco)
                               .toFixed(2)
                               .toString()
                               .replace(".", ",")}
