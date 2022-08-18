@@ -1,7 +1,10 @@
 <img src='https://svgshare.com/i/jvM.svg' title='Fatec food' height="auto" width="100%"/>
+
 # Fatec Food
+
 "Fatec food" foi o nome que escolhemos para batizar o aplicativo desenvolvido para a apresentação do nosso grupo de TCC, apresentado dia 20/06/2022 na Faculdade de Técnologia de Sorocaba, o qual obteve nota máxima em sua apresentação.
 <img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
+
 ### Integrantes
 
 - [Eric Hideki Kataoka Ferreira](https://github.com/EricHidekiKataokaFerreira)
